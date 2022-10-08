@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <title>Heart Disease - Predição</title>
+    </head>
+
+    <body>
+      <script>
+        Swal.fire({
+          icon: 'warning',
+          title: 'Atenção!!',
+          text: 'O resultado desta predição não deve ser utilizado de forma alguma como diagnóstico médico!!!',
+        })
+      </script>
+
+      <main id="result">
+        <div id="left-column">
+          <a id="button" href="/">Voltar ao início</a>
+        </div>
+
+        <div id="right-column">
+          <div id="title">
+            <h1>Resultado da predição</h1>
+            <hr>
+
+            <p>
+              Os dados foram analisados e submetidos ao modelo de machine learning.
+              O resultado não representa um diagnóstico tampouco deve ser usado para tal finalidade,
+              a forma de saber se a informação obtida neste teste é válida se dá somente através de 
+              consulta com um profissional da saúde.
+            </p>
+
+            <div id="alert">
+              Ao analisar os seus dados e aplicar o modelo de machine learning, foi
+              identificado que você {{result}} problemas cardíacos.
+            </div>
+          </div>
+        </div>
+      </main>
+    </body>
+</html>

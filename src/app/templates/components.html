@@ -1,190 +1,175 @@
 {% extends "layout.html" %}
 {% block form %}
-  <form action="/about" method="post" id="form">
+  <form action="/result" method="post" id="form">
+    <div>
+      <h4>Faça a sua predição</h4>
+      <hr>
+      <!-- Captura dos dados inseidos pelo usuario -->
+      <p>Digite seu peso</p>
+      <input type="number" step=0.01 name="weight" id="weight-form" required>
 
-    <ol>
-      <li>
-        <span>Digite seu IMC:</span>
-        <input type="text" name="imc" id="imc-form" required>
-      </li>
+      <p>Digite sua altura</p>
+      <input type="number" step=0.01 name="height" id="height-form" required>
 
-      <li>
-        <label for="smoking">Você fumou nos úlimos 30 dias?</label>
-        <select name="smoking" id="smoking-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>
+        Se você teve doenças leves ou lesões durante os últimos 30 dias, digite quantos dias 
+        de ocorrência. Caso contrário digite 0
+      </p>
+      <input type="number" name="physical" id="physical-form" required>
 
-      <li>
-        <label for="alcoholDrink">Você bebeu nos úlimos 30 dias?</label>
-        <select name="alcoholDrink" id="drink-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>
+        Se sua saúde mental estiver afetada, digite a quantidade de dias durante os 
+        úlimos 30 dias que notou isso. Caso contrário digite 0
+      </p>
+      <input type="number" name="mental" id="mental-form" required>
 
-      <li>
-        <label for="stroke">stroke?</label>
-        <select name="stroke" id="stroke-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>Digite quantas horas você dorme durante o dia</p>
+      <input type="number" step=0.01 name="sleep" id="sleep-form" required>
 
-      <li>
-        <span>Dias sem lesões físicas (últimos 30 dias):</span>
-        <input type="text" name="physical" id="physical-form" required>
-      </li>
+      <!-- Captura dos dados de escolha do usuario -->
+      <p>Você fumou nos úlimos 30 dias?</p>
+      <select name="smoking" id="smoking-form">
+        <option value=1>Sim</option>
+        <option value=2>Não</option>
+      </select>
 
-      <li>
-        <span>Dias com saúde mental ruim (últimos 30 dias):</span>
-        <input type="text" name="mental" id="mental-form" required>
-      </li>
+      <p>Você bebeu nos úlimos 30 dias?</p>
+      <select name="drink" id="drink-form">
+        <option value=2>Sim</option>
+        <option value=1>Não</option>
+      </select>
 
-      <li>
-        <label for="diff">diff?</label>
-        <select name="diff" id="diff-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>Você já teve derrame?</p>
+      <select name="stroke" id="stroke-form">
+        <option value=2>Sim</option>
+        <option value=1>Não</option>
+      </select>
 
-      <li>
-        <label for="sex">Qual seu sexo?</label>
-        <select name="sex" id="sex-form">
-          
-          <option value="2">Masculino</option>
-          <option value="1">Feminino</option>
-        </select>
-      </li>
+      <p>Você sente dificuldades para caminhar ou subir escadas?</p>
+      <select name="diff" id="diff-form">
+        <option value=2>Sim</option>
+        <option value=1>Não</option>
+      </select>
 
-      <li>
-        <label for="age">Qual sua faixa etária?</label>
-        <select name="age" id="age-form">
-          
-          <option value="2">55-59 anos</option>
-          <option value="1">...</option>
-        </select>
-      </li>
+      <p>Qual seu sexo?</p>
+      <select name="sex" id="sex-form">
+        <option value=2>Masculino</option>
+        <option value=1>Feminino</option>
+      </select>
 
-      <li>
-        <label for="race">Você se identifica com qual raça?</label>
-        <select name="race" id="race-form">
-          
-          <option value="2">Branco</option>
-          <option value="1">Hispânico</option>
-        </select>
-      </li>
+      <p>Qual sua faixa etária?</p>
+      <select name="age" id="age-form">
+        <option value=21>18-24 anos</option>
+        <option value=27>25-29 anos</option>
+        <option value=32>30-34 anos</option>
+        <option value=37>35-39 anos</option>
+        <option value=42>40-44 anos</option>
+        <option value=47>45-49 anos</option>
+        <option value=52>50-54 anos</option>
+        <option value=57>55-59 anos</option>
+        <option value=62>60-64 anos</option>
+        <option value=67>65-69 anos</option>
+        <option value=72>70-74 anos</option>
+        <option value=77>75-79 anos</option>
+        <option value=80>Acima de 80 anos</option>
+      </select>
 
-      <li>
-        <label for="diabetic">Você tem ou já teve diabetes?</label>
-        <select name="diabetic" id="diabetic-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>Você se identifica com qual raça? (Padrão de acordo com censo norte-americano)</p>
+      <select name="race" id="race-form">
+        <option value=1>Branco</option>
+        <option value=2>Negro</option>
+        <option value=3>Asiático</option>
+        <option value=4>Indígena/Nativo do Alaska</option>
+        <option value=6>Latino</option>
+        <option value=5>Outro</option>
+      </select>
 
-      <li>
-        <span>Dias com saúde mental ruim (últimos 30 dias):</span>
-        <input type="text" name="activity" id="activity-form" required>
-      </li>
+      <p>Você tem ou já teve diabetes?</p>
+      <select name="diabetic" id="diabetic-form">
+        <option value=1>Sim</option>
+        <option value=2>Não</option>
+        <option value=3>Não, porém sou pré-diabético</option>
+        <option value=4>Sim (desenvolvi durante a gravidez)</option>
+      </select>
 
-      <li>
-        <label for="generalHealt">Como você classifica sua saúde em geral?</label>
-        <select name="generalHealt" id="generalHealt-form">
-          
-          <option value="2">Boa</option>
-          <option value="1">Ruim</option>
-        </select>
-      </li>
+      <p>Você praticou atividades físicas durate os ultimos 30 dias?</p>
+      <select name="activity" id="activity-form">
+        <option value=1>Sim</option>
+        <option value=2>Não</option>
+      </select>
+      
+      <p>Como você classifica sua saúde em geral?</p>
+      <select name="generalHealt" id="generalHealt-form">
+        <option value=5>Excelente</option>
+        <option value=1>Muito boa</option>
+        <option value=3>Boa</option>
+        <option value=2>Razoável</option>
+        <option value=4>Ruim</option>
+      </select>
 
-      <li>
-        <span>Você dorme geralmente quantas horas durante o dia (24 horas)?:</span>
-        <input type="text" name="sleep" id="sleep-form" required>
-      </li>
+      <p>Você tem ou já teve asma?</p>
+      <select name="asthma" id="asthma-form">
+        <option value=1>Sim</option>
+        <option value=2>Não</option>
+      </select>
 
-      <li>
-        <label for="asthma">Você tem ou já teve asma?</label>
-        <select name="asthma" id="asthma-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>Você tem ou já teve doença renal? (exceto cálculos renais, infecção da bexiga ou incontinência)</p>
+      <select name="kidney" id="kidney-form">
+        <option value=2>Sim</option>
+        <option value=1>Não</option>
+      </select>
 
-      <li>
-        <label for="kidney">KidneyDisease</label>
-        <select name="kidney" id="kidney-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
+      <p>Você tem ou já teve cancer de pele?</p>
+      <select name="cancer" id="cancer-form">
+        <option value=1>Sim</option>
+        <option value=2>Não</option>
+      </select>
+    </div>
 
-      <li>
-        <label for="cancer">Você tem ou já teve diabetes?</label>
-        <select name="cancer" id="cancer-form">
-          
-          <option value="2">Sim</option>
-          <option value="1">Não</option>
-        </select>
-      </li>
-
-
-
-    </ol>
-    
-    <button type="submit">Realizar predição</button>
-    <div id="result"></div>
+    <div id="button-position">
+      <button type="submit">Realizar predição</button>
+    </div>
   </form>
-
-  <!-- jQuery -->
-  <script 
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous">
-  </script>
- 
-  <!-- Aplicação do preventDefault -->
-  <script type="text/javascript">
-    $(document).on('submit','#form',function(e) {
-      console.log('hello');
-      e.preventDefault();
-
-      $.ajax({
-        type:'POST',
-        url:'/about',
-        data: {
-          imc: $("#imc-form").val(),
-          smoking: $("#smoking-form").val(),
-          drink: $("#drink-form").val(),
-          stroke: $("#stroke-form").val(),
-          physical: $("#physical-form").val(),
-          mental: $("#mental-form").val(),
-          diff: $("#diff-form").val(),
-          sex: $("#sex-form").val(),
-          age: $("#age-form").val(),
-          race: $("#race-form").val(),
-          diabetic: $("#diabetic-form").val(),
-          activity: $("#activity-form").val(),
-          generalHealt: $("#generalHealt-form").val(),
-          sleep: $("#sleep-form").val(),
-          asthma: $("#asthma-form").val(),
-          kidney: $("#kidney-form").val(),
-          cancer: $("#cancer-form").val()
-        }
-      })
-    });
-  </script>
-
 {% endblock form %}
 
+
+
 {% block paragraph %}
-  <img src="#" alt="aqui">
+  <div id="title">
+    <h1>Predição de doenças cardíacas</h1>
+    <hr>
+
+    <p>
+      Este projeto faz parte de uma atividade de cunho avaliativo para a disciplina
+      de mineração de dados do curso Sistemas de Informação do 
+      <a href="https://www.ifnmg.edu.br"target="_blank" rel="noopener noreferrer">IFNMG - Campus Januária</a>.
+    </p>
+
+    <p>
+      O objetivo é escolher uma base de dados, realizar o seu pré-processamento e treinar esses dados
+      com um algoritmo de Machine Learning. A base de dados escolhida refere-se a dados de uma pesquisa
+      norte-americana que consiste em ligações para mais de 400 mil pessoas do país que são submetidas 
+      à um questionário sobre sua saúde. O intuito da pesquisa é fazer um levantamento se o entrevistado 
+      possui problemas cardíacos.
+    </p>
+
+    <p>
+      Os dados em questão foram devidamente pré-processados e aplicados em uma tarefa de classificação.
+      A classificação consiste em trabalhar com os dados a fim de associar determinadas características 
+      à uma classe, ou seja, o objetivo é predizer a qual classe determinados dados pertencem. 
+      Para isso deve-se conhecer os dados previamente, definir uma classe alvo e treinar o algoritmo para que, 
+      ao atribuir dados novos, o sistema possa predizer corretamente a classe a qual os dados pertencem.
+    </p>
+
+    <p>
+      Utilizou-se mais de um algoritmo classificativo para a tarefa. Foram utlizadas métricas para
+      obtenção do modelo mais eficiente para o contexto específico, além de todos os algoritmos terem
+      passado pelo método de <i>cross_validation</i>.
+    </p>
+
+    <p>
+      Alerto que em hipótese alguma o resultado desta análise deve ser utilizada para atribuir
+      qualquer diagnóstico. Se houver dúvidas quanto ao resultado, favor procurar um profissional da saúde.
+    </p>
+  </div>
 {% endblock paragraph %}

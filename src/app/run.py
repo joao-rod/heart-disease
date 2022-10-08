@@ -2,7 +2,7 @@ from sklearn.tree import ExtraTreeClassifier
 from flask import Flask, render_template, request
 
 import pickle
-model = pickle.load(open('modelo.pkl', 'rb'))
+model = pickle.load(open('../../models/modelo.pkl', 'rb'))
 
 app = Flask(__name__)
 
@@ -10,27 +10,31 @@ app = Flask(__name__)
 def home():
     return render_template('components.html')
 
-@app.route('/about', methods=['GET', 'POST'])
+@app.route('/result', methods=['GET', 'POST'])
 def about():
     if request.method == 'POST':
-        imc = request.form.get('imc')
-        smoking = request.form.get('smoking')
-        drink = request.form.get('drink')
-        stroke = request.form.get('stroke')
-        physical = request.form.get('physical')
-        mental = request.form.get('mental')
-        diff = request.form.get('diff')
-        sex = request.form.get('sex')
-        age = request.form.get('age')
-        race = request.form.get('race')
-        diabetic = request.form.get('diabetic')
-        activity = request.form.get('activity')
-        generalHealt = request.form.get('generalHealt')
-        sleep = request.form.get('sleep')
-        asthma = request.form.get('asthma')
-        kidney = request.form.get('kidney')
-        cancer = request.form.get('cancer')
-        result = model.predict([[
+        height = float(request.form.get('height'))
+        weight = float(request.form.get('weight'))
+        imc = float(weight / (height * height))
+        
+        smoking = float(request.form.get('smoking'))
+        drink = float(request.form.get('drink'))
+        stroke = float(request.form.get('stroke'))
+        physical = float(request.form.get('physical'))
+        mental = float(request.form.get('mental'))
+        diff = float(request.form.get('diff'))
+        sex = float(request.form.get('sex'))
+        age = float(request.form.get('age'))
+        race = float(request.form.get('race'))
+        diabetic = float(request.form.get('diabetic'))
+        activity = float(request.form.get('activity'))
+        generalHealt = float(request.form.get('generalHealt'))
+        sleep = float(request.form.get('sleep'))
+        asthma = float(request.form.get('asthma'))
+        kidney = float(request.form.get('kidney'))
+        cancer = float(request.form.get('cancer'))
+        
+        predict = model.predict([[
             imc,
             smoking,
             drink,
@@ -49,7 +53,12 @@ def about():
             kidney,
             cancer
         ]])
-        print(result)
-    return "<script>alert('teste)</script>"
+        
+        if predict[0] == 1:
+            result = "não possui"
+        else:
+            result = "possui"
+
+    return render_template('result.html', result=result)
 
 app.run(debug=True)
