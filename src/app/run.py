@@ -61,4 +61,4 @@ def about():
 
     return render_template('result.html', result=result)
 
-app.run(debug=True)
+app.run(debug=True, host='0.0.0.0')
